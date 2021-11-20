@@ -83,8 +83,10 @@ class data_handler:
                     print(body)
                     print(
                         es.index(index=CONFIG.ESINDEX, doc_type='_doc', body=json.dumps(json.loads(body))))
-        except:
-            raise Exception("ELK Host is not available")
+            else:
+                    print("ELK Host is not available")
+        except Exception as e:
+            raise Exception(f"The Following Exception was found : {e}")
 
 
     def syslog_reporter(self):
