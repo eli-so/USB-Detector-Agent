@@ -1,0 +1,5 @@
+#grok Pattern Example for Syslog & logstash
+
+grok {
+      match => { "message" => "%{TIMESTAMP_ISO8601:syslog_timestamp}%{SPACE}Action=%{WORD:action}%{SPACE}HostName=%{HOSTNAME:hostname}%{SPACE}PNPDeviceID=%{DATA:pnpdeviceid}%{SPACE}FriendlyName=%{WORD:friendlyname}%{SPACE}Service=%{WORD:serivce}%{SPACE}Agent=%{WORD:agent}" }
+}
