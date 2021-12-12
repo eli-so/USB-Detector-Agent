@@ -11,7 +11,7 @@ class offlinedata:
         """
         Adding new data to offline_data list
         Args:
-            data (dict): Data dict
+            Dict : Data dict
         """
         self.offline_data.append(data)
 
