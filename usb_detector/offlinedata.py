@@ -1,35 +1,31 @@
-
-class Offline_Data() :
+class offlinedata:
     """
             Offline_Data Class
-            in case of connectivity issue between agent to the server this class suppose to save the data offline
-            until it will be pop out from the list
+            In case of connectivity issue between USB Detector agent to ELK server,
+            This class will save the data 'offline' in queue.
     """
     def __init__(self):
-
         self.offline_data = []
 
-    def add_offline_data(self,data):
+    def add_offline_data(self, data):
         """
-        Add Data to the internal list
+        Adding new data to offline_data list
         Args:
-            data(dict): Data dict
+            data (dict): Data dict
         """
         self.offline_data.append(data)
 
     def get_offline_data_poll(self):
         """
-        Returns:
-            self.offline_data(dict) : Data dict
-
+        Pop data from offline_data polling list
         """
         return self.offline_data.pop()
 
     def get_offline_data_list(self):
         """
+        Get offline_data list
         Returns:
-
-
+             List : offline_data
         """
         return self.offline_data
 
@@ -37,7 +33,7 @@ class Offline_Data() :
         """
         Check if the list is empty
         Returns:
-            Boolean : True If the list is Empty Else False
+            Bool : True If the list is Empty Else False
         """
         if self.offline_data:
             return False
@@ -46,10 +42,8 @@ class Offline_Data() :
 
     def queue_size(self):
         """
-        check the list size
+        checking list size
         Returns:
-            list size(int)
+                Int : list size
         """
         return len(self.offline_data.qsize())
-
-

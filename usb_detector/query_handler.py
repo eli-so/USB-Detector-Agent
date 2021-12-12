@@ -3,7 +3,6 @@ import subprocess
 import logging
 from pypnpobjects import WMIStorePNPObjects
 
-
 def get_wmipnp_devices():
     """
     Get wmipnp_devices , scan over connected devices
@@ -13,12 +12,13 @@ def get_wmipnp_devices():
     with WMIStorePNPObjects() as wmipnp_devices:
         proc_res = wmipnp_devices.load()
         if proc_res[0] == 0:
-            pnpdevices = list(wmipnp_devices.query('*', pnpclass='USB', case_sensitive_comparision = False, comparision_operator = 'like'))
-            for dev in pnpdevices :
-                logging.debug('Device %s is %s'%(dev.Name))
+            pnpdevices = list(wmipnp_devices.query('*', pnpclass='USB', case_sensitive_comparision=False,
+                                                   comparision_operator='like'))
+            for dev in pnpdevices:
+                logging.debug('Device %s is %s' % (dev.Name))
             logging.debug(len(pnpdevices))
         else:
-            logging.info('Error with code %d : %s'%(proc_res))
+            logging.info('Error with code %d : %s' % (proc_res))
     return pnpdevices
 
 
@@ -27,7 +27,6 @@ def send_powershell_query(command):
      wrapper for powershell queries
     Args:
         command(str): command for send
-
     Returns:
           results(json): command results
     `"""
@@ -48,10 +47,10 @@ def send_powershell_query(command):
     return results
 
 
-def get_disk_drive_name(deviceid = ""):
+def get_disk_drive_name(deviceid=""):
     try:
-        result =  send_powershell_query(command="Get-PnpDevice -Class DiskDrive -PresentOnly  | Where { $_.InstanceId.contains(" + f"'{deviceid}'"+") }")
+        result = send_powershell_query(
+            command="Get-PnpDevice -Class DiskDrive -PresentOnly  | Where { $_.InstanceId.contains(" + f"'{deviceid}'" + ") }")
         return result["FriendlyName"]
-    except:
-        return "Can't locate FriendlyName "
-
+    except Exception as exception:
+        return f"Can't locate FriendlyName, Exception {exception} "
