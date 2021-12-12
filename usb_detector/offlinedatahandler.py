@@ -1,6 +1,6 @@
 import pickle
 from os import path
-from Config import CONFIG
+from config import CONFIG
 from offlinedata import offlinedata
 
 class offlinedatahandler:

@@ -2,7 +2,7 @@ import json
 import logging.handlers
 from datetime import datetime
 import pytz
-from Config import CONFIG
+from config import CONFIG
 from elasticsearch import Elasticsearch
 from query_handler import get_disk_drive_name
 

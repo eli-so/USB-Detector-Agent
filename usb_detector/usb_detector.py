@@ -1,7 +1,7 @@
 import ctypes
 import time
 import logging
-from Config import CONFIG
+from config import CONFIG
 from deepdiff import DeepDiff
 from datahandler import datahandler
 from query_handler import get_wmipnp_devices
